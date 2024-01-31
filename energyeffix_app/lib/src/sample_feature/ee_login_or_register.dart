@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
 
-/// Displays detailed information about a SampleItem.
-class SampleItemDetailsView extends StatelessWidget {
-  const SampleItemDetailsView({super.key});
-
-  static const routeName = '/sample_item';
+class ee_login_or_register extends StatelessWidget {
+  const ee_login_or_register({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff1D1E33), // Added background color
-      appBar: AppBar(
-        backgroundColor: const Color(0xff1D1E33), // Matched app bar color
-        title: const Text('Item Details'),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -26,10 +18,10 @@ class SampleItemDetailsView extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             const SizedBox(height: 20), // Add spacing between elements
-            // Welcome label with clear and bold text (ensure sufficient contrast)
+            // Welcome label with clear and bold text
             const Text(
               'Welcome to EnergyEffix',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 40), // Add spacing before buttons
             // Sign in button with explicit padding and consistent styling
