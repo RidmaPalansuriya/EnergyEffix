@@ -4,3 +4,4 @@ class SampleItem {
 
   final int id;
 }
+

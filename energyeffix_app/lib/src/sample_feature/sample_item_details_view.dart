@@ -1,12 +1,11 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 
-/// Displays detailed information about a SampleItem.
 class SampleItemDetailsView extends StatelessWidget {
-  const SampleItemDetailsView({super.key});
+  const SampleItemDetailsView({Key? key}) : super(key: key);
 
   static const routeName = '/sample_item';
+
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +85,7 @@ class SampleItemDetailsView extends StatelessWidget {
               'Have not an account yet?',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
             ),
+
             const SizedBox(height: 15), // Add spacing between buttons
             // Register button with consistent styling
             //Sign In Button
@@ -118,7 +118,7 @@ class SampleItemDetailsView extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 24, // Bolder text
                       fontWeight: FontWeight.w900,
-                        color: Color(0xff1D1E33),
+                      color: Color(0xff1D1E33),
                     ),
                   ),
                 ),
@@ -134,6 +134,7 @@ class SampleItemDetailsView extends StatelessWidget {
               fit: BoxFit.cover,
             ),
 
+            //Icon(Icons.copyright_outlined, color: Colors.white),
           ],
         ),
       ),

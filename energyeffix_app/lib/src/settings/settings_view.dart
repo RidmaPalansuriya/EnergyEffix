@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'settings_controller.dart';
 
-/// Displays the various settings that can be customized by the user.
-///
-/// When a user changes a setting, the SettingsController is updated and
-/// Widgets that listen to the SettingsController are rebuilt.
 class SettingsView extends StatelessWidget {
-  const SettingsView({super.key, required this.controller});
+  const SettingsView({Key? key, required this.controller}) : super(key: key);
 
   static const routeName = '/settings';
 
@@ -15,35 +10,109 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Check if the device is in landscape mode
+    bool isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        // Glue the SettingsController to the theme selection DropdownButton.
-        //
-        // When a user selects a theme from the dropdown list, the
-        // SettingsController is updated, which rebuilds the MaterialApp.
-        child: DropdownButton<ThemeMode>(
-          // Read the selected themeMode from the controller
-          value: controller.themeMode,
-          // Call the updateThemeMode method any time the user selects a theme.
-          onChanged: controller.updateThemeMode,
-          items: const [
-            DropdownMenuItem(
-              value: ThemeMode.system,
-              child: Text('System Theme'),
+        toolbarHeight: 100,
+        backgroundColor: Color(0xff0071aa),
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: Icon(Icons.menu),
+          color: Colors.white,
+          tooltip: "Top Navigation Bar Menu",
+          iconSize: 45,
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () {
+                // Navigator.pushNamed(context, EeHome.routeName);
+              },
+              child: Image.asset(
+                'assets/images/energy_effix_logo_full_h.png',
+                width: 150,
+                height: 40,
+                fit: BoxFit.cover,
+              ),
             ),
-            DropdownMenuItem(
-              value: ThemeMode.light,
-              child: Text('Light Theme'),
-            ),
-            DropdownMenuItem(
-              value: ThemeMode.dark,
-              child: Text('Dark Theme'),
-            )
           ],
+        ),
+        actions: [
+          IconButton(
+            onPressed: null,
+            icon: Icon(Icons.add_alert),
+            color: Colors.white,
+            tooltip: "Top Navigation Bar Notification Button",
+            iconSize: 33,
+          ),
+          IconButton(
+            onPressed: null,
+            icon: Icon(Icons.account_circle),
+            color: Colors.white,
+            tooltip: "Top Navigation Bar Profile Icon",
+            iconSize: 35,
+          ),
+        ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(40),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  onPressed: null,
+                  icon: Icon(Icons.arrow_back_ios_new_rounded),
+                  color: Colors.white,
+                  tooltip: "Back Button",
+                  iconSize: 35,
+                ),
+                DropdownButton<ThemeMode>(
+                  value: controller.themeMode,
+                  onChanged: controller.updateThemeMode,
+                  items: const [
+                    DropdownMenuItem(
+                      value: ThemeMode.system,
+                      child: Text('System Theme'),
+                    ),
+                    DropdownMenuItem(
+                      value: ThemeMode.light,
+                      child: Text('Light Theme'),
+                    ),
+                    DropdownMenuItem(
+                      value: ThemeMode.dark,
+                      child: Text('Dark Theme'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      body: isLandscape
+          ? SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: RotatedBox(
+          quarterTurns: 3,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Container(
+              // Replace this container with the actual body content.
+            ),
+          ),
+        ),
+      )
+          : SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Container(
+            // Replace this container with the actual body content.
+          ),
         ),
       ),
     );

@@ -18,7 +18,10 @@ class SampleItemListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:  Color(0xff1D1E33),
+
       appBar: AppBar(
+        backgroundColor: Colors.pink,
         title: const Text('Sample Items'),
         actions: [
           IconButton(
@@ -66,6 +69,8 @@ class SampleItemListView extends StatelessWidget {
           );
         },
       ),
+
+
     );
   }
 }
