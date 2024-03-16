@@ -1,8 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
+<<<<<<< Updated upstream
         android:label="energyeffix_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+=======
+        android:label="EnergyEffix"
+        android:name="${applicationName}"
+        android:icon="@mipmap/launcher_icon">
+>>>>>>> Stashed changes
         <activity
             android:name=".MainActivity"
             android:exported="true"

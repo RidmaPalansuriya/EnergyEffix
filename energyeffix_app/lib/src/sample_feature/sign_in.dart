@@ -46,12 +46,21 @@ class SampleItemDetailsView extends StatelessWidget {
             // Sign in button with explicit padding and consistent styling
             //Sign In Button
             ElevatedButton(
+<<<<<<< Updated upstream
               onPressed: () => Navigator.pushNamed(context, '/sign_in'), // Redirect to Sign In page
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
                 padding: const EdgeInsets.all(0.1),
                 primary: Color(0xea19b6d6).withOpacity(1), // Set primary color for gradient
                 onPrimary: Colors.white, // Ensure text visibility on gradient
+=======
+              onPressed: () => Navigator.pushNamed(context, '/register_signin'), // Redirect to Sign In page
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+                padding: const EdgeInsets.all(0.1),
+                //primary: Color(0xea19b6d6).withOpacity(1), // Set primary color for gradient
+                //onPrimary: Colors.white, // Ensure text visibility on gradient
+>>>>>>> Stashed changes
                 minimumSize: const Size(160, 45), // Set button size
                 //primary: maxWidth: const Size(250, 60), // Set maximum width and height
               ),
@@ -95,8 +104,13 @@ class SampleItemDetailsView extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
                 padding: const EdgeInsets.all(0.1),
+<<<<<<< Updated upstream
                 primary: Color(0xea19b6d6).withOpacity(1), // Set primary color for gradient
                 onPrimary: Colors.white, // Ensure text visibility on gradient
+=======
+                //primary: Color(0xea19b6d6).withOpacity(1), // Set primary color for gradient
+                //onPrimary: Colors.white, // Ensure text visibility on gradient
+>>>>>>> Stashed changes
                 minimumSize: const Size(160, 45), // Set button size
                 //primary: maxWidth: const Size(250, 60), // Set maximum width and height
               ),
