@@ -3,72 +3,94 @@ import 'package:flutter/material.dart';
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Existing UI code...
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/analytics');
-              },
-              child: Text('Analytics'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/bill');
-              },
-              child: Text('Bill'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/goal');
-              },
-              child: Text('Goal'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/device');
-              },
-              child: Text('Device'),
-            ),
-
-            // Your existing UI code...
-          ],
-        ),
-      ),
+    return MaterialApp(
+      home: MyHomePage(),
     );
   }
 }
 
-
-class OvalBorder extends ShapeBorder {
+class MyHomePage extends StatelessWidget {
   @override
-  EdgeInsetsGeometry get dimensions => EdgeInsets.all(0);
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Bottom Navigation Bar Example'),
+      ),
+      body: Center(
+        child: Text('Your main content goes here'),
+      ),
+      bottomNavigationBar: BottomNavBar(),
+    );
+  }
+}
 
+class BottomNavBar extends StatelessWidget {
   @override
-  Path getInnerPath(Rect rect, {TextDirection? textDirection}) {
-    return getOuterPath(rect);
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 51,
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      decoration: ShapeDecoration(
+        color: Color(0xFF3A3737),
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            width: 1,
+            color: Colors.black.withOpacity(0.15),
+          ),
+          borderRadius: BorderRadius.circular(30),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildNavItem(icon: Icons.home, label: 'Home'),
+          _buildNavItem(icon: Icons.analytics, label: 'Analytics'),
+          _buildNavItem(icon: Icons.emoji_events, label: 'Goal'),
+          _buildNavItem(icon: Icons.receipt, label: 'My Bill'),
+          _buildNavItem(icon: Icons.settings, label: 'Settings'),
+        ],
+      ),
+    );
   }
 
-  @override
-  Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
-    final path = Path();
-    path.addOval(rect);
-    return path;
-  }
-
-  @override
-  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {}
-
-  @override
-  ShapeBorder scale(double t) {
-    // TODO: implement scale
-    throw UnimplementedError();
+  Widget _buildNavItem({required IconData icon, required String label}) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Stack(
+          children: [
+            Container(
+              width: 45,
+              height: 45,
+              decoration: ShapeDecoration(
+                color: Color(0xFF3A3737),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
+            Positioned(
+              left: 16,
+              top: 4,
+              child: Icon(
+                icon,
+                size: 24,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 4),
+        Text(
+          label,
+          style: TextStyle(
+            color: Color(0xFF979797),
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    );
   }
 }

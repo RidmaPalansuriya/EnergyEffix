@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class ManualEntry extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -22,16 +21,26 @@ class ManualReadingPage extends StatefulWidget {
 class _ManualReadingPageState extends State<ManualReadingPage> {
   DateTime _meterReadingDate = DateTime.now();
   TimeOfDay _meterReadingTime = TimeOfDay.now();
-  late int _manualReadUnits;
+  int? _manualReadUnits;
   bool _isSaved = false;
 
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Manual Reading Page'),
       ),
-      body: Padding(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment(0.00, -1.00),
+            end: Alignment(0, 1),
+            colors: [Colors.white, Color(0xEA19B6D6)],
+          ),
+          borderRadius: BorderRadius.circular(32),
+        ),
         padding: EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,6 +52,7 @@ class _ManualReadingPageState extends State<ManualReadingPage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            SizedBox(height: 20.0),
             Container(
               color: Colors.black,
               padding: EdgeInsets.all(20.0),
@@ -76,13 +86,17 @@ class _ManualReadingPageState extends State<ManualReadingPage> {
                     child: Container(
                       padding: EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
-                        color: Colors.red,
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Colors.white, Color(0xEA19B6D6)],
+                        ),
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                       child: Text(
                         '${_meterReadingDate.year}-${_meterReadingDate.month}-${_meterReadingDate.day}',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -112,29 +126,51 @@ class _ManualReadingPageState extends State<ManualReadingPage> {
                     child: Container(
                       padding: EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
-                        color: Colors.red,
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Colors.white, Color(0xEA19B6D6)],
+                        ),
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                       child: Text(
                         '${_meterReadingTime.hour}:${_meterReadingTime.minute}',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                     ),
                   ),
                   SizedBox(height: 10.0),
-                  TextField(
-                    keyboardType: TextInputType.number,
-                    onChanged: (value) {
-                      setState(() {
-                        _manualReadUnits = int.tryParse(value)!;
-                      });
-                    },
-                    decoration: InputDecoration(
-                      labelText: 'Meter Value',
-                      fillColor: Colors.white,
-                      filled: true,
+                  Container(
+                    constraints: BoxConstraints(
+                      minWidth: deviceWidth * 0.6, // Adjust according to your requirement
+                      maxWidth: deviceWidth * 0.8, // Adjust according to your requirement
+                    ),
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      onChanged: (value) {
+                        setState(() {
+                          _manualReadUnits = int.tryParse(value);
+                        });
+                      },
+                      decoration: InputDecoration(
+                        labelText: 'Meter Value',
+                        fillColor: Colors.white,
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white, // Use the same gradient color
+                          ),
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white, // Use the same gradient color
+                          ),
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -144,42 +180,74 @@ class _ManualReadingPageState extends State<ManualReadingPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    // Save button logic
-                    // Assuming saving to database here
-                    setState(() {
-                      _isSaved = true;
-                    });
-                  },
-                  child: Text('Save'),
+                Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Colors.white, Color(0xEA19B6D6)],
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Save button logic
+                      // Assuming saving to database here
+                      setState(() {
+                        _isSaved = true;
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(deviceWidth * 0.2, 50), // Adjust according to your requirement
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    child: Text('Save'),
+                  ),
                 ),
                 SizedBox(width: 10.0),
-                ElevatedButton(
-                  onPressed: _isSaved
-                      ? () {
-                          // Analyze button logic
-                          // Show overlay screen dialog box
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('Analysis Dialog'),
-                                content: Text('Previous meter readings and history graph'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text('Close'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        }
-                      : null,
-                  child: Text('Analyze'),
+                Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Colors.white, Color(0xEA19B6D6)],
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: ElevatedButton(
+                    onPressed: _isSaved
+                        ? () {
+                            // Analyze button logic
+                            // Show overlay screen dialog box
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Analysis Dialog'),
+                                  content: Text('Previous meter readings and history graph'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('Close'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
+                        : null,
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(deviceWidth * 0.2, 50), // Adjust according to your requirement
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    child: Text('Analyze'),
+                  ),
                 ),
               ],
             ),
