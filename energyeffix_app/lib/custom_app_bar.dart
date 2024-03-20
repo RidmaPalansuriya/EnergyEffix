@@ -8,7 +8,7 @@ class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     Key? key,
     required this.pageTitle,
-    this.onBackPress,
+    this.onBackPress, required String title,
   }) : super(key: key);
 
   @override
