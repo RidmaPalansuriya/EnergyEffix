@@ -1,25 +1,12 @@
-<<<<<<< Updated upstream
+import 'package:energyeffix_app/Components/MyDrawer.dart';
+import 'package:energyeffix_app/About.dart';
+import 'package:energyeffix_app/SettingsPage.dart';
 import 'package:flutter/material.dart';
 
 import 'src/app.dart';
 import 'src/settings/settings_controller.dart';
 import 'src/settings/settings_service.dart';
 
-void main() async {
-  // Set up the SettingsController, which will glue user settings to multiple
-  // Flutter Widgets.
-  final settingsController = SettingsController(SettingsService());
-
-  // Load the user's preferred theme while the splash screen is displayed.
-  // This prevents a sudden theme change when the app is first displayed.
-  await settingsController.loadSettings();
-
-  // Run the app and pass in the SettingsController. The app listens to the
-  // SettingsController for changes, then passes it further down to the
-  // SettingsView.
-  runApp(MyApp(settingsController: settingsController));
-}
-=======
 import 'package:energyeffix_app/src/LoadingPage.dart';
 import 'package:energyeffix_app/src/RegisterPage.dart';
 import 'package:energyeffix_app/src/Register_SignIn.dart';
@@ -34,11 +21,11 @@ import 'custom_app_bar.dart'; // Import the custom app bar
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 import 'CustomGoal.dart';
+import 'About.dart';
 import 'Analytics.dart';
 import 'Bill.dart';
 import 'Devices.dart';
 import 'Goal.dart';
-
 
 void main() {
   runApp(EnergyEffixApp());
@@ -76,6 +63,11 @@ class EnergyEffixApp extends StatelessWidget {
         '/getStarted': (context) => GetStartedScreen(), // Route for GetStartedScreen
 
         '/manualentry' : (context) => ManualEntry(),
+
+        '/mydrawer' :(context) =>  MyDrawer(userName: "Ridma Palansuriya", userId: "12345678", points: 2000,),
+
+        '/about': (context) => About(),
+        '/settings': (context) => SettingsPage(),
       },
 
     );
@@ -84,4 +76,4 @@ class EnergyEffixApp extends StatelessWidget {
 
 
 
->>>>>>> Stashed changes
+

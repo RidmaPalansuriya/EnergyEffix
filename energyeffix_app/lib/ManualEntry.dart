@@ -1,93 +1,187 @@
 import 'package:flutter/material.dart';
 
-class ManualEntry extends StatefulWidget {
+
+class ManualEntry extends StatelessWidget {
   @override
-  _ManualEntryState createState() => _ManualEntryState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Manual Reading Page',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: ManualReadingPage(),
+    );
+  }
 }
 
-class _ManualEntryState extends State<ManualEntry> {
-  DateTime _selectedDate = DateTime.now();
-  bool _customPreviousReading = false;
-  DateTime _previousReadingDate = DateTime.now();
-  String _meterValue = '';
-  String _unitType = 'kWh';
+class ManualReadingPage extends StatefulWidget {
+  @override
+  _ManualReadingPageState createState() => _ManualReadingPageState();
+}
+
+class _ManualReadingPageState extends State<ManualReadingPage> {
+  DateTime _meterReadingDate = DateTime.now();
+  TimeOfDay _meterReadingTime = TimeOfDay.now();
+  late int _manualReadUnits;
+  bool _isSaved = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Manual Entry'),
+        title: Text('Manual Reading Page'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text('Last Added Meter Reading Details'),
-            SizedBox(height: 10),
-            Text('Date: 2nd June 2023'),
-            SizedBox(height: 10),
-            Text('Meter Value: 16781kWh'),
-            SizedBox(height: 20),
-            CheckboxListTile(
-              title: Text('Custom Previous Reading'),
-              value: _customPreviousReading,
-              onChanged: (bool? value) {
-                setState(() {
-                  _customPreviousReading = value!;
-                });
-              },
+          children: [
+            Text(
+              'Add Manual Reading',
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            if (_customPreviousReading)
-              Column(
+            Container(
+              color: Colors.black,
+              padding: EdgeInsets.all(20.0),
+              margin: EdgeInsets.symmetric(vertical: 20.0),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text('Previous Reading Date'),
-                  ElevatedButton(
-                    onPressed: () async {
-                      final DateTime? picked = await showDatePicker(
-                        context: context,
-                        initialDate: _previousReadingDate,
-                        firstDate: DateTime(2000),
-                        lastDate: DateTime.now(),
-                      );
-                      if (picked != null && picked != _previousReadingDate)
-                        setState(() {
-                          _previousReadingDate = picked;
-                        });
-                    },
-                    child: Text(
-                      'Select Date',
-                      style: TextStyle(color: Colors.white),
+                children: [
+                  Text(
+                    'Meter Reading Date',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
                     ),
                   ),
-                  Text('Meter Value'),
+                  SizedBox(height: 10.0),
+                  GestureDetector(
+                    onTap: () {
+                      showDatePicker(
+                        context: context,
+                        initialDate: _meterReadingDate,
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2100),
+                      ).then((pickedDate) {
+                        if (pickedDate != null) {
+                          setState(() {
+                            _meterReadingDate = pickedDate;
+                          });
+                        }
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      child: Text(
+                        '${_meterReadingDate.year}-${_meterReadingDate.month}-${_meterReadingDate.day}',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10.0),
+                  Text(
+                    'Meter Reading Time',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                  SizedBox(height: 10.0),
+                  GestureDetector(
+                    onTap: () {
+                      showTimePicker(
+                        context: context,
+                        initialTime: _meterReadingTime,
+                      ).then((pickedTime) {
+                        if (pickedTime != null) {
+                          setState(() {
+                            _meterReadingTime = pickedTime;
+                          });
+                        }
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      child: Text(
+                        '${_meterReadingTime.hour}:${_meterReadingTime.minute}',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10.0),
                   TextField(
-                    onChanged: (String value) {
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) {
                       setState(() {
-                        _meterValue = value;
+                        _manualReadUnits = int.tryParse(value)!;
                       });
                     },
                     decoration: InputDecoration(
                       labelText: 'Meter Value',
-                      suffixText: _unitType,
+                      fillColor: Colors.white,
+                      filled: true,
                     ),
                   ),
                 ],
               ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Add meter reading logic here
-              },
-              child: Text('Add Meter Reading'),
             ),
-            SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                // Analyze reading logic here
-              },
-              child: Text('Analyze Reading'),
+            SizedBox(height: 20.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    // Save button logic
+                    // Assuming saving to database here
+                    setState(() {
+                      _isSaved = true;
+                    });
+                  },
+                  child: Text('Save'),
+                ),
+                SizedBox(width: 10.0),
+                ElevatedButton(
+                  onPressed: _isSaved
+                      ? () {
+                          // Analyze button logic
+                          // Show overlay screen dialog box
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text('Analysis Dialog'),
+                                content: Text('Previous meter readings and history graph'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text('Close'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
+                      : null,
+                  child: Text('Analyze'),
+                ),
+              ],
             ),
           ],
         ),

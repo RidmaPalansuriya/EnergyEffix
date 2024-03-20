@@ -1,8 +1,11 @@
 import 'package:energyeffix_app/GetStarted.dart';
 import 'package:energyeffix_app/ManualEntry.dart';
+import 'package:energyeffix_app/ManualEntry.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:energyeffix_app/Components/CustomAppBar.dart';
+import 'package:energyeffix_app/Components/CustomDrawer.dart';
 
 import 'CustomGoal.dart';
 import 'LeaderBoard.dart';
@@ -13,9 +16,9 @@ class GoalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Goal'),
-      ),
+      // appBar: CustomAppBar(appBar: AppBar(
+      //   toolbarHeight: 100,
+      // ), title: "Analytics", ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -125,8 +128,7 @@ class GoalPage extends StatelessWidget {
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
-                            Image.network(
-                              'image_url_$index',
+                            Image.asset('assets/images/1.jpg',
                               height: double.infinity,
                               width: double.infinity,
                               fit: BoxFit.cover,

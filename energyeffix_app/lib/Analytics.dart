@@ -18,7 +18,7 @@ class _AnalyticsState extends State<Analytics> {
     return Scaffold(
       appBar: CustomAppBar(appBar: AppBar(
         toolbarHeight: 100,
-      ), title: "Analytics", ),
+      ), title: "Analytics"),
       drawer: CustomDrawer(),
       body: Center(
         child: Column(

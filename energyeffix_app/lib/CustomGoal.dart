@@ -1,132 +1,179 @@
 import 'package:flutter/material.dart';
 
-
-class CustomGoal extends StatefulWidget {
+class CustomGoal extends StatelessWidget {
   @override
-  _CustomGoalState createState() => _CustomGoalState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Challenge Creation Page',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: ChallengeCreationPage(),
+    );
+  }
 }
 
-class _CustomGoalState extends State<CustomGoal> {
-  int currentStep = 0;
-  List<String> goalTypes = ['Percentage Reduction', 'Absolute Target'];
-  List<String> timeFrames = ['Daily', 'Weekly', 'Monthly', 'Annually'];
-  String selectedGoalType = 'Percentage Reduction';
-  String selectedTimeFrame = 'Daily';
-  TextEditingController usageController = TextEditingController();
+class ChallengeCreationPage extends StatefulWidget {
+  @override
+  _ChallengeCreationPageState createState() => _ChallengeCreationPageState();
+}
+
+class _ChallengeCreationPageState extends State<ChallengeCreationPage> {
+  late int _targetUnit;
+  String _goalPeriod = '';
+  String _selectedAlertPercentage = '';
+  final List<String> alertPercentageOptions = ['25%', '50%', '75%', '90%'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create a Customized Goal'),
+        title: Text('Create Challenge'),
       ),
       body: SafeArea(
-        child: Stepper(
-          currentStep: currentStep,
-          onStepContinue: () {
-            if (currentStep < 3) {
-              setState(() {
-                currentStep += 1;
-              });
-            } else {
-              // Save data logic
-              // Add your code to handle the Save button action
-            }
-          },
-          onStepCancel: () {
-            if (currentStep > 0) {
-              setState(() {
-                currentStep -= 1;
-              });
-            }
-          },
-          steps: [
-            Step(
-              title: Text('Goal Type'),
-              content: Column(
-                children: [
-                  Wrap(
-                    spacing: 10.0,
-                    children: goalTypes.map((type) {
-                      return ChoiceChip(
-                        label: Text(type),
-                        selected: selectedGoalType == type,
-                        onSelected: (selected) {
-                          setState(() {
-                            selectedGoalType = type;
-                          });
-                        },
-                      );
-                    }).toList(),
+        child: SingleChildScrollView(
+          child: Container(
+            color: Color(0x3F000000),
+            padding: EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Absolute Target (Units)',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
                   ),
-                ],
-              ),
-              isActive: currentStep == 0,
-            ),
-            Step(
-              title: Text('Time Frame'),
-              content: Column(
-                children: [
-                  Wrap(
-                    spacing: 10.0,
-                    children: timeFrames.map((frame) {
-                      return ChoiceChip(
-                        label: Text(frame),
-                        selected: selectedTimeFrame == frame,
-                        onSelected: (selected) {
-                          setState(() {
-                            selectedTimeFrame = frame;
-                          });
-                        },
-                      );
-                    }).toList(),
+                ),
+                SizedBox(height: 10.0),
+                TextField(
+                  keyboardType: TextInputType.number,
+                  onChanged: (value) {
+                    setState(() {
+                      _targetUnit = int.tryParse(value)!;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'Enter Target Units',
+                    fillColor: Colors.white,
+                    filled: true,
                   ),
-                ],
-              ),
-              isActive: currentStep == 1,
-            ),
-            Step(
-              title: Text('Usage Reduction'),
-              content: Column(
-                children: [
-                  TextFormField(
-                    controller: usageController,
-                    decoration: InputDecoration(
-                      labelText: selectedGoalType == 'Percentage Reduction'
-                          ? 'Usage reduction target Percentage'
-                          : 'Usage reduction Absolute Target',
+                ),
+                SizedBox(height: 20.0),
+                Text(
+                  'Time Frame',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 10.0),
+                Wrap(
+                  spacing: 10.0,
+                  children: [
+                    ChoiceChip(
+                      label: Text('Daily'),
+                      selected: _goalPeriod == 'Daily',
+                      onSelected: (selected) {
+                        setState(() {
+                          _goalPeriod = selected ? 'Daily' : '';
+                        });
+                      },
                     ),
+                    ChoiceChip(
+                      label: Text('Weekly'),
+                      selected: _goalPeriod == 'Weekly',
+                      onSelected: (selected) {
+                        setState(() {
+                          _goalPeriod = selected ? 'Weekly' : '';
+                        });
+                      },
+                    ),
+                    ChoiceChip(
+                      label: Text('Monthly'),
+                      selected: _goalPeriod == 'Monthly',
+                      onSelected: (selected) {
+                        setState(() {
+                          _goalPeriod = selected ? 'Monthly' : '';
+                        });
+                      },
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20.0),
+                Text(
+                  'Set Alert Notification',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
                   ),
-                ],
-              ),
-              isActive: currentStep == 2,
-            ),
-            Step(
-              title: Text('Set Alert'),
-              content: Column(
-                children: [
-                  CheckboxListTile(
-                    title: Text('Receive alerts when approaching the goal.'),
-                    value: true, // Change the value based on the user's selection
-                    onChanged: (value) {
-                      // Handle checkbox value change
+                ),
+                SizedBox(height: 10.0),
+                Wrap(
+                  spacing: 10.0,
+                  children: alertPercentageOptions.map((option) {
+                    return ChoiceChip(
+                      label: Text(option),
+                      backgroundColor: Colors.blue,
+                      selected: _selectedAlertPercentage == option,
+                      onSelected: (selected) {
+                        setState(() {
+                          _selectedAlertPercentage = selected ? option : '';
+                        });
+                      },
+                    );
+                  }).toList(),
+                ),
+                SizedBox(height: 20.0),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Save challenge logic (to be implemented)
+                      _showSubscriptionMessage();
                     },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                    ),
+                    child: Text('Save Challenge'),
                   ),
-                  CheckboxListTile(
-                    title: Text('Receive alerts when exceeding the goal.'),
-                    value: false, // Change the value based on the user's selection
-                    onChanged: (value) {
-                      // Handle checkbox value change
-                    },
-                  ),
-                  // Add more checkboxes and logic for custom alerts
-                ],
-              ),
-              isActive: currentStep == 3,
+                ),
+                SizedBox(height: 20.0),
+              ],
             ),
-          ],
+          ),
         ),
       ),
+    );
+  }
+
+  void _showSubscriptionMessage() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Subscription Success'),
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('You are successfully subscribed to your custom challenge.'),
+              SizedBox(height: 10.0),
+              Text('Time Frame: $_goalPeriod'),
+              Text('Target Units: $_targetUnit'),
+              Text('Alert Percentage: $_selectedAlertPercentage'),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

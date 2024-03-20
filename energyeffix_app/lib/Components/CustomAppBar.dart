@@ -9,7 +9,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      toolbarHeight: 100,
+      toolbarHeight: 500,
       backgroundColor: Color(0xff0071aa),
       leading: Builder(
         builder: (BuildContext context) {
@@ -70,8 +70,24 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 tooltip: "Back Button",
                 iconSize: 35,
               ),
-              Text(title),
-            ],
+              Container
+              (
+                margin: EdgeInsets.only(right: 180.0),
+                child: Text
+                (
+                  title,
+                  textAlign: TextAlign.left, // Make text left-aligned
+                  style: TextStyle
+                  (
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontFamily: 'Days One',
+                    fontWeight: FontWeight.w400,
+                    height: 0,
+                  ),
+                ),
+              ),
+              ],
           ),
         ),
       ),

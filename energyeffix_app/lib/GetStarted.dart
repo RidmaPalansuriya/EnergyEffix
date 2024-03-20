@@ -91,7 +91,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
           TextButton(
             onPressed: () {
               // Skip the onboarding process and redirect to the analytics page
-              Navigator.pushReplacementNamed(context, '/analytics');
+              Navigator.pushReplacementNamed(context, '/mydrawer');
             },
             style: TextButton.styleFrom(
               side: BorderSide(color: Colors.blue, width: 1),
