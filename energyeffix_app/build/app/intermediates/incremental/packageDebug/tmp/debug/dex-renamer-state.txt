@@ -1,0 +1,4 @@
+#Wed Mar 20 19:59:36 IST 2024
+base.0=C\:\\Users\\USER\\OneDrive\\Desktop\\SDGP CS-109\\EnergyEffix\\energyeffix_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
