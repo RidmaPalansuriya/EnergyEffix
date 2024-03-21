@@ -2,10 +2,8 @@ import 'package:energyeffix_app/Components/MyDrawer.dart';
 import 'package:energyeffix_app/About.dart';
 import 'package:energyeffix_app/Profile.dart';
 import 'package:energyeffix_app/SettingsPage.dart';
-import 'package:energyeffix_app/presentation/my_profile_screen/my_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'core/app_export.dart';
 
 import 'src/app.dart';
 import 'src/settings/settings_controller.dart';
