@@ -314,14 +314,7 @@ web
 3.2
 file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/web-0.3.0/
 file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/web-0.3.0/lib/
-win32
-3.3
-file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/win32-5.3.0/
-file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/win32-5.3.0/lib/
-xdg_directories
-3.0
-file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/xdg_directories-1.0.4/
-file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/xdg_directories-1.0.4/lib/
+
 xml
 2.16
 file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/xml-5.4.1/

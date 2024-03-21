@@ -44,6 +44,9 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    double deviceWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: const Color(0xff1D1E33),
       appBar: AppBar(
@@ -102,7 +105,7 @@ class _SignInPageState extends State<SignInPage> {
 
             // User Name input field
             Container(
-              width: 360,
+              width: deviceWidth * 0.9, // 90% of device width,
               height: 90,
               alignment: Alignment.center, // Center align vertically
               child: Stack(
@@ -111,7 +114,7 @@ class _SignInPageState extends State<SignInPage> {
                     left: 0,
                     top: 30,
                     child: Container(
-                      width: 292,
+                      width: deviceWidth * 0.8, // 80% of device width
                       height: 39,
                       decoration: ShapeDecoration(
                         gradient: LinearGradient(
@@ -137,7 +140,7 @@ class _SignInPageState extends State<SignInPage> {
                     left: 17,
                     top: 15,
                     child: SizedBox(
-                      width: 243,
+                      width: deviceWidth * 0.8, // 80% of device width
                       height: 69,
 
                       child: TextField(
@@ -168,7 +171,7 @@ class _SignInPageState extends State<SignInPage> {
                     left: 17,
                     top: 0,
                     child: SizedBox(
-                      width: 243,
+                      width: deviceWidth * 0.8, // 80% of device width
                       height: 19,
                       child: Text(
                         'Username/Email Address',
@@ -188,7 +191,7 @@ class _SignInPageState extends State<SignInPage> {
 
             // Password input field
             Container(
-              width: 292,
+              width: deviceWidth * 0.9, // 90% of device width
               height: 84,
               child: Stack(
                 children: [
@@ -196,7 +199,7 @@ class _SignInPageState extends State<SignInPage> {
                     left: 0,
                     top: 30,
                     child: Container(
-                      width: 292,
+                      width: deviceWidth * 0.8, // 80% of device width
                       height: 39,
                       decoration: ShapeDecoration(
                         gradient: LinearGradient(
@@ -222,7 +225,7 @@ class _SignInPageState extends State<SignInPage> {
                     left: 17,
                     top: 15,
                     child: SizedBox(
-                      width: 243,
+                      width: deviceWidth * 0.8, // 80% of device width
                       height: 69,
                       child: TextField(
                         controller: passwordController,
@@ -250,7 +253,7 @@ class _SignInPageState extends State<SignInPage> {
                     left: 17,
                     top: 0,
                     child: SizedBox(
-                      width: 243,
+                      width: deviceWidth * 0.8, // 80% of device width
                       height: 19,
                       child: Text(
                         'Password',
