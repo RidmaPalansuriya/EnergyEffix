@@ -1,7 +1,9 @@
 import 'package:energyeffix_app/Components/MyDrawer.dart';
 import 'package:energyeffix_app/About.dart';
+import 'package:energyeffix_app/Profile.dart';
 import 'package:energyeffix_app/SettingsPage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'src/app.dart';
 import 'src/settings/settings_controller.dart';
@@ -51,7 +53,7 @@ class EnergyEffixApp extends StatelessWidget {
 
         //'/goal_test': (context) => GoalTest(),
 
-        '/analytics': (context) => Analytics(),
+        // '/analytics': (context) => Analytics(),
         '/bill': (context) => Bill(),
         '/goal': (context) => GoalPage(),
 
@@ -68,6 +70,7 @@ class EnergyEffixApp extends StatelessWidget {
 
         '/about': (context) => About(),
         '/settings': (context) => SettingsPage(),
+        //'/profile': (context) => Profile(),
       },
 
     );
