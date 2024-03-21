@@ -203,9 +203,9 @@ url_launcher_platform_interface
 file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2/
 file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2/lib/
 url_launcher_web
-3.3
-file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_web-2.3.0/
-file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_web-2.3.0/lib/
+3.2
+file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_web-2.2.3/
+file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_web-2.2.3/lib/
 url_launcher_windows
 3.0
 file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_windows-3.1.1/
@@ -219,9 +219,9 @@ vm_service
 file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/vm_service-13.0.0/
 file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/vm_service-13.0.0/lib/
 web
-3.3
-file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/web-0.5.1/
-file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/web-0.5.1/lib/
+3.2
+file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/web-0.3.0/
+file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/web-0.3.0/lib/
 xml
 2.16
 file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/xml-5.4.1/
@@ -231,7 +231,7 @@ yaml
 file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/yaml-3.1.2/
 file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/yaml-3.1.2/lib/
 energyeffix_app
-3.3
+3.2
 file:///C:/Users/USER/OneDrive/Desktop/SDGP%20CS-109/EnergyEffix/energyeffix_app/
 file:///C:/Users/USER/OneDrive/Desktop/SDGP%20CS-109/EnergyEffix/energyeffix_app/lib/
 sky_engine

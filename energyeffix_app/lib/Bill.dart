@@ -9,7 +9,6 @@ class Bill extends StatelessWidget {
     var controller;
     return Scaffold(
       appBar: CustomAppBar(appBar: AppBar(), title: "My Bill"),
-      
       body: Center(
         child: Text('This is your Bill'),
       ),

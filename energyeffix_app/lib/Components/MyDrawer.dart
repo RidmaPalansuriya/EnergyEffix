@@ -9,8 +9,7 @@ class MyDrawer extends StatelessWidget {
   const MyDrawer({required this.userName, required this.userId, required this.points});
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     // Calculate the width of the drawer to be 60% of the device width
     final double drawerWidth = MediaQuery.of(context).size.width * 0.6;
 
@@ -47,15 +46,16 @@ class MyDrawer extends StatelessWidget {
               'Points: $points',
               style: TextStyle(color: Colors.white, fontSize: 14),
             ),
+            SizedBox(height: 20),
             Expanded(
               child: ListView(
                 children: [
                   _buildDrawerButton(
-  icon: Icons.analytics,
-  text: 'Analytics',
-  routeName: '/analytics',
-  context: context,
-),
+                    icon: Icons.analytics,
+                    text: 'Analytics',
+                    routeName: '/analytics',
+                    context: context,
+                  ),
                   _buildDrawerButton(icon: Icons.analytics, text: 'Analytics', routeName:'/analytics', context: context),
                   //_buildDrawerButton(icon: Icons.history, text: 'View History'),
                   _buildDrawerButton(icon: Icons.input, text: 'Manual Input', routeName: '/manualentry', context: context),
@@ -78,59 +78,57 @@ class MyDrawer extends StatelessWidget {
     );
   }
 
-    Widget _buildDrawerButton({required IconData icon, required String text, required String routeName, required BuildContext context}) {
-  return Builder(
-    builder: (BuildContext context) {
-      final double drawerWidth = MediaQuery.of(context).size.width * 0.6; // 60% of device width
-      final double buttonWidth = drawerWidth - 50; // Adjusted width for the button
+  Widget _buildDrawerButton({required IconData icon, required String text, required String routeName, required BuildContext context}) {
+    return Builder(
+      builder: (BuildContext context) {
+        final double drawerWidth = MediaQuery.of(context).size.width * 0.6; // 60% of device width
+        final double buttonWidth = drawerWidth - 50; // Adjusted width for the button
 
-      return GestureDetector(
-        onTap: () {
-          Navigator.of(context).pushNamed(routeName);
-        },
-        child: Container(
-          width: buttonWidth,
-          height: 44,
-          margin: EdgeInsets.symmetric(vertical: 8),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment(0.00, -1.00),
-              end: Alignment(0, 1),
-              colors: [Color(0xFF434343), Color(0x22434343), Color(0x00434343), Color(0x22434343), Color(0xFF434343)],
+        return GestureDetector(
+          onTap: () {
+            Navigator.of(context).pushNamed(routeName);
+          },
+          child: Container(
+            width: buttonWidth,
+            height: 60,
+            margin: EdgeInsets.symmetric(vertical: 8),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment(0.00, -1.00),
+                end: Alignment(0, 1),
+                colors: [Color(0xFF434343), Color(0x22434343), Color(0x00434343), Color(0x22434343), Color(0xFF434343)],
+              ),
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(10),
+                bottomRight: Radius.circular(10),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0x3F000000),
+                  blurRadius: 4,
+                  offset: Offset(0, 4),
+                  spreadRadius: 0,
+                )
+              ],
             ),
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(10),
-              bottomRight: Radius.circular(10),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Color(0x3F000000),
-                blurRadius: 4,
-                offset: Offset(0, 4),
-                spreadRadius: 0,
-              )
-            ],
-          ),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10, right: 20),
-                child: Icon(
-                  icon,
-                  color: Colors.white,
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 20),
+                  child: Icon(
+                    icon,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              Text(
-                text,
-                style: TextStyle(color: Colors.white),
-              ),
-            ],
+                Text(
+                  text,
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
           ),
-        ),
-      );
-    },
-  );
-}
-
+        );
+      },
+    );
   }
-
+}
