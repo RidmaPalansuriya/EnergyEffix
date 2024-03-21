@@ -1,16 +1,15 @@
 // import 'package:energyeffix_app/core/utils/image_constant.dart';
 // import 'package:energyeffix_app/core/utils/size_utils.dart';
+// import 'package:energyeffix_app/presentation/my_profile_screen/my_profile_screen.dart';
 // import 'package:energyeffix_app/theme/app_decoration.dart';
 // import 'package:energyeffix_app/theme/custom_button_style.dart';
 // import 'package:energyeffix_app/theme/custom_text_style.dart';
 // import 'package:energyeffix_app/widgets/custom_elevated_button.dart';
 // import 'package:energyeffix_app/widgets/custom_image_view.dart';
 // import 'package:flutter/material.dart';
-// //import 'package:user_profile/core/app_export.dart';
-// //import 'package:user_profile/widgets/custom_elevated_button.dart';
 
-// class MyProfileScreen extends StatefulWidget {
-//   const MyProfileScreen({Key? key}) : super(key: key);
+// class Profile extends StatefulWidget {
+//   const Profile({Key? key}) : super(key: key);
 
 //   @override
 //   _MyProfileScreenState createState() => _MyProfileScreenState();
@@ -20,6 +19,10 @@
 //   TextEditingController _nameController = TextEditingController(text: "Chamodi Hansani");
 //   TextEditingController _emailController = TextEditingController(text: "chamodi@gmail.com");
 //   TextEditingController _phoneController = TextEditingController(text: "0769473010");
+
+//   String profileName = "Chamodi Hansani";
+//   String profileEmail = "chamodi@gmail.com";
+//   String profilePhone = "0769473010";
 
 //   @override
 //   Widget build(BuildContext context) {
@@ -59,11 +62,11 @@
 //                     child: Column(
 //                       crossAxisAlignment: CrossAxisAlignment.center,
 //                       children: [
-//                         _buildTextField("Name", _nameController, theme),
+//                         _buildTextField("Name", _nameController, theme, profileName),
 //                         SizedBox(height: 23.v),
-//                         _buildTextField("Email Address", _emailController, theme),
+//                         _buildTextField("Email Address", _emailController, theme, profileEmail),
 //                         SizedBox(height: 23.v),
-//                         _buildTextField("Phone Number", _phoneController, theme),
+//                         _buildTextField("Phone Number", _phoneController, theme, profilePhone),
 //                       ],
 //                     ),
 //                   ),
@@ -95,7 +98,7 @@
 //   }
 
 //   /// Builds a text field with given label and controller.
-//   Widget _buildTextField(String label, TextEditingController controller, ThemeData theme) {
+//   Widget _buildTextField(String label, TextEditingController controller, ThemeData theme, String value) {
 //     return Column(
 //       crossAxisAlignment: CrossAxisAlignment.start,
 //       children: [
@@ -110,6 +113,11 @@
 //             border: OutlineInputBorder(),
 //             contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
 //           ),
+//           onChanged: (newValue) {
+//             setState(() {
+//               value = newValue;
+//             });
+//           },
 //         ),
 //       ],
 //     );
