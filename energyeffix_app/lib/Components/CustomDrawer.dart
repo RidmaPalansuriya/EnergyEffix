@@ -20,13 +20,13 @@ class CustomDrawer extends StatelessWidget {
     ),
     ),
     ListTile(
-    title: Text('Item 1'),
+    title: Text('Ridma'),
     onTap: () {
     Navigator.pop(context);
     },
     ),
     ListTile(
-    title: Text('Item 2'),
+    title: Text('Palansuriya'),
     onTap: () {
     Navigator.pop(context);
     },

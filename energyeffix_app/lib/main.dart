@@ -53,9 +53,9 @@ class EnergyEffixApp extends StatelessWidget {
 
         //'/goal_test': (context) => GoalTest(),
 
-        // '/analytics': (context) => Analytics(),
+        '/analytics': (context) => Analytics(),
         '/bill': (context) => Bill(),
-        '/goal': (context) => GoalPage(),
+        '/goal': (context) => Goal(),
 
         '/customgoal': (context) => CustomGoal(),
 

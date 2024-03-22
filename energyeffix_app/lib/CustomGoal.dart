@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:energyeffix_app/Components/CustomAppBar.dart';
+import 'package:energyeffix_app/Components/CustomDrawer.dart';
 
 class CustomGoal extends StatelessWidget {
   @override
@@ -27,9 +29,10 @@ class _ChallengeCreationPageState extends State<ChallengeCreationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Create Challenge'),
-      ),
+      appBar: CustomAppBar(appBar: AppBar(
+        toolbarHeight: 120,
+      ), title: "Custom Goal"),
+      drawer: CustomDrawer(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
