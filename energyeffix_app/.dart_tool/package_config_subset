@@ -219,9 +219,16 @@ vm_service
 file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/vm_service-13.0.0/
 file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/vm_service-13.0.0/lib/
 web
+<<<<<<< HEAD
 3.3
 file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/web-0.5.1/
 file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/web-0.5.1/lib/
+=======
+3.2
+file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/web-0.3.0/
+file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/web-0.3.0/lib/
+
+>>>>>>> 3afa3d18253fa30065852ca115fb4b7f26491c87
 xml
 2.16
 file:///C:/Users/USER/AppData/Local/Pub/Cache/hosted/pub.dev/xml-5.4.1/

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #Fri Mar 22 11:13:14 IST 2024
+=======
+#Thu Mar 21 04:11:50 IST 2024
+>>>>>>> 3afa3d18253fa30065852ca115fb4b7f26491c87
 base.0=C\:\\Users\\USER\\OneDrive\\Desktop\\SDGP CS-109\\EnergyEffix\\energyeffix_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
