@@ -15,12 +15,12 @@ class UnitsCalculated {
 }
 
 class MyApp extends StatelessWidget {
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Charts Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.blueGrey[900],
       ),
       home: MyHomePage(),
     );
@@ -28,14 +28,12 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   List<UnitsCalculated> data = [];
 
-  @override
   void initState() {
     super.initState();
     fetchData();
@@ -54,17 +52,49 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Bar Graph'),
-      ),
-      body: Center(
-        child: Container(
-          height: 300,
-          padding: EdgeInsets.all(20),
-          child: _buildBarChart(),
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 80),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.blueGrey[200],
+                borderRadius: BorderRadius.circular(40),
+                border: Border.all(color: Colors.blueGrey, width: 5), // Blue border
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 25),
+              margin: EdgeInsets.only(left: 15, right: 15),
+              child: Column(
+                children: [
+                  Text(
+                    'Prediction for the month (March 2024)',
+                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    '\nkwh:',
+                    style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 30),
+            Text(
+              'This Week Electricity Usage',
+              style: TextStyle(fontSize: 20.0, color: Colors.white, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 20),
+            Center(
+              child: Container(
+                height: 300,
+                padding: EdgeInsets.all(20),
+                child: _buildBarChart(),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -88,7 +118,15 @@ class _MyHomePageState extends State<MyHomePage> {
       flipVerticalAxis: false,
       barRendererDecorator: charts.BarLabelDecorator<String>(),
       domainAxis: charts.OrdinalAxisSpec(
-        renderSpec: charts.SmallTickRendererSpec(labelRotation: 45),
+        renderSpec: charts.SmallTickRendererSpec(
+          labelStyle: charts.TextStyleSpec(color: charts.Color.white),
+          labelRotation: 45,
+        ),
+      ),
+      primaryMeasureAxis: charts.NumericAxisSpec(
+        renderSpec: charts.GridlineRendererSpec(
+          labelStyle: charts.TextStyleSpec(color: charts.Color.white),
+        ),
       ),
     );
   }
