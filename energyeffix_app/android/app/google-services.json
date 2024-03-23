@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "70269118057",
+    "project_id": "energy-effix",
+    "storage_bucket": "energy-effix.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70269118057:android:800d37aea27454c5ce64f8",
+        "android_client_info": {
+          "package_name": "com.example.energyeffix_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6mtsscTSJld98RrcA8wDAFtf9ZysXI38"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
