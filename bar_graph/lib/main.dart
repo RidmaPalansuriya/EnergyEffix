@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:charts_flutter/flutter.dart' as charts;
 
 void main() {
@@ -7,9 +9,9 @@ void main() {
 
 class UnitsCalculated {
   final String day;
-  final int units;
+  final double unit;
 
-  UnitsCalculated(this.day, this.units);
+  UnitsCalculated(this.day, this.unit);
 }
 
 class MyApp extends StatelessWidget {
@@ -25,27 +27,43 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  List<UnitsCalculated> data = [
-    UnitsCalculated('Mon', 3),
-    UnitsCalculated('Tue', 5),
-    UnitsCalculated('Wed', 4),
-    UnitsCalculated('Thu', 4),
-    UnitsCalculated('Fri', 6),
-    UnitsCalculated('Sat', 3),
-    UnitsCalculated('Sun', 5),
-  ];
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  List<UnitsCalculated> data = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    final response = await http.get(Uri.parse('http://192.168.1.3/login_sdgp/post.php'));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> jsonData = json.decode(response.body);
+      setState(() {
+        data = jsonData.map((item) => UnitsCalculated(item['day'], double.parse(item['unit']))).toList();
+      });
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bar Chart'),
+        title: Text('Bar Graph'),
       ),
       body: Center(
         child: Container(
           height: 300,
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.all(20),
           child: _buildBarChart(),
         ),
       ),
@@ -55,10 +73,10 @@ class MyHomePage extends StatelessWidget {
   Widget _buildBarChart() {
     List<charts.Series<UnitsCalculated, String>> series = [
       charts.Series(
-        id: 'Population',
+        id: 'Units',
         data: data,
-        domainFn: (UnitsCalculated series, _) => series.day,
-        measureFn: (UnitsCalculated series, _) => series.units,
+        domainFn: (UnitsCalculated datum, _) => datum.day,
+        measureFn: (UnitsCalculated datum, _) => datum.unit,
         colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
       )
     ];
@@ -68,7 +86,6 @@ class MyHomePage extends StatelessWidget {
       animate: true,
       vertical: true,
       flipVerticalAxis: false,
-
       barRendererDecorator: charts.BarLabelDecorator<String>(),
       domainAxis: charts.OrdinalAxisSpec(
         renderSpec: charts.SmallTickRendererSpec(labelRotation: 45),
