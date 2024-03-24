@@ -15,11 +15,13 @@ class UnitsCalculated {
 }
 
 class MyApp extends StatelessWidget {
+main
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Charts Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+
         scaffoldBackgroundColor: Colors.blueGrey[900],
       ),
       home: MyHomePage(),
@@ -52,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
@@ -66,6 +69,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 border: Border.all(color: Colors.blueGrey, width: 5), // Blue border
               ),
               padding: EdgeInsets.symmetric(horizontal: 40, vertical: 25),
+
+  // Remove the @override annotation
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Bar Graph'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 80), // Add spacing before the top box
+
+            // Rounded top box with padding and spacing
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.blueGrey[200], // Lighter color for the container
+                borderRadius: BorderRadius.circular(40),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 40),
+main
               margin: EdgeInsets.only(left: 15, right: 15),
               child: Column(
                 children: [
@@ -75,23 +98,44 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Text(
                     '\nkwh:',
+
                     style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
             ),
             SizedBox(height: 30),
+
+                    style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+
+            // Add spacing before the graph title
+            SizedBox(height: 30),
+
+            // Heading for the graph with white color and slightly smaller font
+
             Text(
               'This Week Electricity Usage',
               style: TextStyle(fontSize: 20.0, color: Colors.white, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
+
             SizedBox(height: 20),
+
+            SizedBox(height: 20), // Add smaller spacing before the graph
+
             Center(
               child: Container(
                 height: 300,
                 padding: EdgeInsets.all(20),
+
                 child: _buildBarChart(),
+
+                child: _buildBarChart(), // Call the defined method here
+
               ),
             ),
           ],
@@ -100,6 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  // **_buildBarChart method definition:**
   Widget _buildBarChart() {
     List<charts.Series<UnitsCalculated, String>> series = [
       charts.Series(
@@ -119,13 +164,21 @@ class _MyHomePageState extends State<MyHomePage> {
       barRendererDecorator: charts.BarLabelDecorator<String>(),
       domainAxis: charts.OrdinalAxisSpec(
         renderSpec: charts.SmallTickRendererSpec(
+
           labelStyle: charts.TextStyleSpec(color: charts.Color.white),
+          labelRotation: 45,
+
+          labelStyle: charts.TextStyleSpec(color: charts.Color.white), // Set x-axis text color
           labelRotation: 45,
         ),
       ),
       primaryMeasureAxis: charts.NumericAxisSpec(
         renderSpec: charts.GridlineRendererSpec(
+
           labelStyle: charts.TextStyleSpec(color: charts.Color.white),
+
+          labelStyle: charts.TextStyleSpec(color: charts.Color.white), // Set y-axis text color
+
         ),
       ),
     );
