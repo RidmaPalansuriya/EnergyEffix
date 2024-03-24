@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'Components/CustomAppBar.dart';
 import 'Components/CustomDrawer.dart';
 import 'Components/myNavBar.dart';
@@ -18,7 +17,7 @@ class Bill extends StatelessWidget {
     required this.totalAmount,
   });
 
-    @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(appBar: AppBar(
