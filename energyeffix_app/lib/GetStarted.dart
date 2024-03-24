@@ -167,7 +167,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                       );
                     } else {
                       // Handle navigation after reaching the last page
-                      Navigator.pushReplacementNamed(context, '/analytics');
+                      Navigator.pushReplacementNamed(context, '/home');
                     }
                   },
                   style: ElevatedButton.styleFrom(

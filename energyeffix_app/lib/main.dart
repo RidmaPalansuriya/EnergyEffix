@@ -1,6 +1,8 @@
 import 'package:energyeffix_app/Components/MyDrawer.dart';
 import 'package:energyeffix_app/About.dart';
+import 'package:energyeffix_app/FAQs.dart';
 import 'package:energyeffix_app/Goal.dart';
+import 'package:energyeffix_app/Help.dart';
 import 'package:energyeffix_app/Profile.dart';
 import 'package:energyeffix_app/SettingsPage.dart';
 import 'package:flutter/material.dart';
@@ -61,16 +63,16 @@ class EnergyEffixApp extends StatelessWidget {
         '/customgoal': (context) => CustomGoal(),
 
         '/leaderboard': (context) => LeaderboardPage(),
-        '/device': (context) => DevicesPage(),
+        '/device': (context) => Devices(),
 
         '/getStarted': (context) => GetStartedScreen(), // Route for GetStartedScreen
 
         '/manualentry' : (context) => ManualEntry(),
-
         '/mydrawer' :(context) =>  MyDrawer(userName: "Ridma Palansuriya", userId: "12345678", points: 2000,),
-
         '/about': (context) => About(),
         '/settings': (context) => SettingsPage(),
+        '/help': (context) => Help(),
+        '/faq': (context) => FAQs(month: "March",year: 2024, units: 240,),
 
       '/profile': (context) => Profile(
       userID: 123456,
@@ -84,9 +86,6 @@ class EnergyEffixApp extends StatelessWidget {
 //     home: MyNavBar(),
 //   ));
 // }
-
-
-
       },
 
 //: [RouteObserverProvider(child: MaterialApp()).routeObserver],
@@ -132,6 +131,7 @@ class NotFoundScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF1D1E33),
         title: Text('Not Found'),
       ),
       body: Center(

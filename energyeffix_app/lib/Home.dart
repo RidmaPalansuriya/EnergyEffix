@@ -1,3 +1,5 @@
+import 'package:energyeffix_app/Devices.dart';
+import 'package:energyeffix_app/ManualEntry.dart';
 import 'package:energyeffix_app/home.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -79,9 +81,16 @@ class GreetingWidget extends StatelessWidget {
 }
 
 class Home extends StatelessWidget {
+  get month => null;
+  
+  get year => null;
+  
+  get units => null;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF1D1E33),
       appBar: CustomAppBar(appBar: AppBar(
         toolbarHeight: 120,
       ), title: "Home"),
@@ -92,6 +101,66 @@ class Home extends StatelessWidget {
             children: [
               GreetingWidget(), // Adding the GreetingWidget here
               Container(
+                height: 160,
+                width: MediaQuery.of(context).size.width * 0.8, // Set width to device width * 0.8
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Color.fromARGB(49, 54, 152, 244),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: Colors.blue,
+              width: 1,
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'Prediction for your month',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.energy_savings_leaf_outlined,
+                    color: Colors.white,
+                  ),
+                  Text(
+                    '$month $year',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Text(
+                '$units', // Integer value
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Energy Usage for Month',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
+              ),
+            ],
+          ),
+        ),
+              Container(
                 //color: const Color.fromARGB(28, 33, 149, 243),
                 child: Column(
                   children: [
@@ -99,12 +168,12 @@ class Home extends StatelessWidget {
                       buildButton(
                         context,
                         'Add Device',
-                        LeaderboardPage(),
+                        Devices(),
                       ),
                       buildButton(
                         context,
                         'Manual Input',
-                        MyRewardsPage(),
+                        ManualEntry(),
                       ),
                     ]),
                   ],
@@ -132,7 +201,7 @@ class Home extends StatelessWidget {
               ),
 
               // 4 Buttons
-              
+
 
               // Horizontally scrollable row of daily challenge cards
               Container(
