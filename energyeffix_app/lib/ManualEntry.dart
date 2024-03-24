@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'Components/CustomAppBar.dart';
 import 'Components/CustomDrawer.dart';
 
@@ -7,11 +6,17 @@ class ManualEntry extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(appBar: AppBar(
-        toolbarHeight: 120,
-      ), title: "Manual Input"),
+      backgroundColor: Color(0xFF1D1E33),
+      appBar: CustomAppBar(
+        appBar: AppBar(
+          toolbarHeight: 120,
+        ),
+        title: "Manual Input",
+      ),
       drawer: CustomDrawer(),
-      body: ManualReadingPage(),
+      body: SafeArea(
+        child: ManualReadingPage(),
+      ),
     );
   }
 }
@@ -37,18 +42,24 @@ class _ManualReadingPageState extends State<ManualReadingPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Add Manual Reading',
-              style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 20.0),
+            // Text(
+            //   'Add Manual Reading',
+            //   style: TextStyle(
+            //     fontSize: 20.0,
+            //     fontWeight: FontWeight.bold,
+            //     color: Colors.white, // Text color set to white
+            //   ),
+            // ),
+            // SizedBox(height: 20.0),
+
             Container(
               padding: EdgeInsets.all(20.0),
               margin: EdgeInsets.symmetric(vertical: 20.0),
-              color: Colors.grey[200],
+              decoration: BoxDecoration(
+                color: Color(0xFF1D1E33), // Background color set to 0xFF1D1E33
+                border: Border.all(color: Colors.blue, width: 1),
+                borderRadius: BorderRadius.circular(20), // Border color set to blue and width to 1px
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -57,6 +68,7 @@ class _ManualReadingPageState extends State<ManualReadingPage> {
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
+                      color: Colors.white, // Text color set to white
                     ),
                   ),
                   SizedBox(height: 10.0),
@@ -78,23 +90,26 @@ class _ManualReadingPageState extends State<ManualReadingPage> {
                     child: Container(
                       padding: EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
+                        border: Border.all(color: Colors.blue, width: 1), // Border color set to blue and width to 1px
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                       child: Text(
                         '${_meterReadingDate.year}-${_meterReadingDate.month}-${_meterReadingDate.day}',
                         style: TextStyle(
                           fontSize: 16.0,
+                          color: Colors.white, // Text color set to white
                         ),
                       ),
                     ),
                   ),
+
                   SizedBox(height: 20.0),
                   Text(
                     'Meter Reading Time',
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
+                      color: Colors.white, // Text color set to white
                     ),
                   ),
                   SizedBox(height: 10.0),
@@ -114,17 +129,19 @@ class _ManualReadingPageState extends State<ManualReadingPage> {
                     child: Container(
                       padding: EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
+                        border: Border.all(color: Colors.blue, width: 1), // Border color set to blue and width to 1px
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                       child: Text(
                         '${_meterReadingTime.hour}:${_meterReadingTime.minute}',
                         style: TextStyle(
                           fontSize: 16.0,
+                          color: Colors.white, // Text color set to white
                         ),
                       ),
                     ),
                   ),
+                  SizedBox(height: 20.0),
                   SizedBox(height: 20.0),
                   TextField(
                     keyboardType: TextInputType.number,
@@ -135,8 +152,21 @@ class _ManualReadingPageState extends State<ManualReadingPage> {
                     },
                     decoration: InputDecoration(
                       labelText: 'Meter Value',
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(color: Colors.blue, width: 1),
+                      ),
+                      labelStyle: TextStyle(color: Colors.white),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(color: Colors.blue, width: 1),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(color: Colors.blue, width: 1),
+                      ),
                     ),
+                    style: TextStyle(color: Colors.white),
                   ),
                 ],
               ),
@@ -153,6 +183,10 @@ class _ManualReadingPageState extends State<ManualReadingPage> {
                       _isSaved = true;
                     });
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue, // Set button background color to blue
+                    minimumSize: Size(deviceWidth * 0.8, 50), // Set button width
+                  ),
                   child: Text('Save'),
                 ),
                 SizedBox(width: 10.0),
