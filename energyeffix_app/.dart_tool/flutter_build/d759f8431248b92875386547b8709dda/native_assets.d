@@ -1,0 +1,1 @@
+ C:\\Users\\USER\\OneDrive\\Desktop\\SDGP\ CS-109\\EnergyEffix\\energyeffix_app\\.dart_tool\\flutter_build\\d759f8431248b92875386547b8709dda\\native_assets.yaml: 
