@@ -82,6 +82,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF1D1E33),
       appBar: CustomAppBar(appBar: AppBar(
         toolbarHeight: 120,
       ), title: "Home"),
