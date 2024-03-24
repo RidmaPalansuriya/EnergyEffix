@@ -1,30 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:energyeffix_app/About.dart'; // Import the About widget
+import 'package:energyeffix_app/about.dart';
 
 void main() {
-  testWidgets('About Widget Test', (WidgetTester tester) async {
-    // Build the About widget and trigger a frame
+  testWidgets('About widget displays correct information', (WidgetTester tester) async {
+    // Build the About widget
     await tester.pumpWidget(MaterialApp(home: About()));
 
-    // Verify that the title is displayed correctly
-    expect(find.text('About EnergyEffix'), findsOneWidget);
+    // Assert
+    expect(find.text('Welcome to EnergyEffix'), findsOneWidget);
+    expect(find.text('Our Mission'), findsOneWidget);
+    expect(find.text('Empower users to take control of their energy consumption,'), findsOneWidget);
+    expect(find.byIcon(Icons.phone), findsOneWidget);
+    expect(find.byIcon(Icons.email), findsOneWidget);
+    expect(find.byIcon(Icons.facebook), findsOneWidget);
+    expect(find.byIcon(Icons.insert_page_break_rounded), findsOneWidget);
+    expect(find.byIcon(Icons.link), findsOneWidget);
+    expect(find.byIcon(Icons.gps_off_outlined), findsOneWidget);
+  });
 
-    // Verify that the mission statement is displayed correctly
-    expect(
-        find.text(
-            '"Empower users to take control of their energy consumption, navigate complex electricity tariffs,and make informed decisions for a more sustainable and cost-effective energy future."'),
-        findsOneWidget);
+  // Test for social buttons onTap callbacks
+  testWidgets('Test onTap callbacks for social buttons', (WidgetTester tester) async {
+    // Build the About widget
+    await tester.pumpWidget(MaterialApp(home: About()));
 
-    // Tap each social button and verify that onTap is triggered (currently empty)
+    // Tap each social button and verify that the corresponding URL launcher function is called
     await tester.tap(find.byIcon(Icons.phone));
+    expect(launch, calledWith("tel:+94769173010"));
+
     await tester.tap(find.byIcon(Icons.email));
-    // Add similar tests for other social buttons
+    expect(launch, calledWith("mailto:ridma.dev@gmail.com"));
 
-    // Wait for animations to complete
-    await tester.pumpAndSettle();
-
-    // Verify that the onTap function for each social button is called
-    // Here you may need to check whether the corresponding URL launcher function is called
+    // Add tests for other social buttons onTap callbacks similarly
   });
 }
