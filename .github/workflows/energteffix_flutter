@@ -33,6 +33,9 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Navigate to Android directory
+        run: cd android
+
       - name: Run unit tests
         run: flutter test
         working-directory: energyeffix_app
