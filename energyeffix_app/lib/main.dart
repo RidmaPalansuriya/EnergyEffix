@@ -1,5 +1,6 @@
 import 'package:energyeffix_app/Components/MyDrawer.dart';
 import 'package:energyeffix_app/About.dart';
+import 'package:energyeffix_app/Goal.dart';
 import 'package:energyeffix_app/Profile.dart';
 import 'package:energyeffix_app/SettingsPage.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ import 'About.dart';
 import 'Analytics.dart';
 import 'Bill.dart';
 import 'Devices.dart';
-import 'Goal.dart';
+
 
 void main() {
   runApp(EnergyEffixApp());
@@ -53,9 +54,9 @@ class EnergyEffixApp extends StatelessWidget {
 
         //'/goal_test': (context) => GoalTest(),
 
-        // '/analytics': (context) => Analytics(),
-        '/bill': (context) => Bill(),
-        '/goal': (context) => GoalPage(),
+        '/analytics': (context) => Analytics(),
+        '/bill': (context) => Bill(month: 'March', unitsUsed: 100,  usageAmount: 800, totalAmount: 1000, ),
+        '/goal': (context) => Goal(),
 
         '/customgoal': (context) => CustomGoal(),
 
@@ -70,13 +71,72 @@ class EnergyEffixApp extends StatelessWidget {
 
         '/about': (context) => About(),
         '/settings': (context) => SettingsPage(),
-        //'/profile': (context) => Profile(),
+
+      '/profile': (context) => Profile(
+      userID: 123456,
+      emailAddress: 'example@example.com',
+      contactNumber: '123-456-7890',
+      points: 200,
+    ),
+     // '/notification': (context) => Notification,
+
+//     navigatorObservers: [RouteObserverProvider()],
+//     home: MyNavBar(),
+//   ));
+// }
+
+
+
       },
 
+//: [RouteObserverProvider(child: MaterialApp()).routeObserver],
+
+
+  onGenerateRoute: (settings) {
+    if (settings.name == '/devices') {
+      // Return a MaterialPageRoute for the DevicesScreen
+      return MaterialPageRoute(
+        builder: (context) => DevicesScreen(),
+      );
+    }
+    // Handle other routes here...
+  },
+
+  onUnknownRoute: (settings) {
+    // Handle unknown routes here, maybe navigate to a not found page.
+    return MaterialPageRoute(
+      builder: (context) => NotFoundScreen(),
+    );
+  },
+  // Other MaterialApp properties...
+);
+  }
+}
+
+class DevicesScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Devices'),
+      ),
+      body: Center(
+        child: Text('Devices Screen'),
+      ),
     );
   }
 }
 
-
-
-
+class NotFoundScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Not Found'),
+      ),
+      body: Center(
+        child: Text('Page Not Found'),
+      ),
+    );
+  }
+}

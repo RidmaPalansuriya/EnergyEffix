@@ -12,6 +12,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    # assets: assets/images/DailyChallenges/
+
+
+
   flutter_localizations:
     sdk: flutter
 

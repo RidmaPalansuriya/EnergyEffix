@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'Components/CustomAppBar.dart';
+import 'Components/CustomDrawer.dart';
+
 class LeaderboardPage extends StatefulWidget {
   @override
   _LeaderboardPageState createState() => _LeaderboardPageState();
@@ -31,59 +34,10 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100),
-        child: AppBar(
-          toolbarHeight: 100,
-          backgroundColor: Color(0xff0071aa),
-          leading: Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                icon: Icon(Icons.menu),
-                color: Colors.white,
-                tooltip: "Top Navigation Bar Menu",
-                iconSize: 45,
-              );
-            },
-          ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  // Navigator.pushNamed(context, EeHome.routeName);
-                },
-                child: Image.asset(
-                  'assets/images/energy_effix_logo_full_h.png',
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  height: 40,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ],
-          ),
-          actions: [
-            IconButton(
-              onPressed: null,
-              icon: Icon(Icons.add_alert),
-              color: Colors.white,
-              tooltip: "Top Navigation Bar Notification Button",
-              iconSize: 33,
-            ),
-            IconButton(
-              onPressed: null,
-              icon: Icon(Icons.account_circle),
-              color: Colors.white,
-              tooltip: "Top Navigation Bar Profile Icon",
-              iconSize: 35,
-            ),
-          ],
-        ),
-      ),
-
+      appBar: CustomAppBar(appBar: AppBar(
+        toolbarHeight: 120,
+      ), title: "Our Champs"),
+      drawer: CustomDrawer(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
