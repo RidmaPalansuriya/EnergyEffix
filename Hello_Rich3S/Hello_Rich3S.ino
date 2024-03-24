@@ -28,6 +28,7 @@ void scrollText(int row, String message, int delayTime, int lcdColumns) {
 }
 
 void setup(){
+  Serial.begin(115200);
   // initialize LCD
   lcd.init();
   // turn on LCD backlight                      
